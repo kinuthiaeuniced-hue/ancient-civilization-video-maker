@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Before Us — AI History Video Maker</title>
+<style>
+:root{--bg:#0d0b09;--panel:#17120e;--gold:#d9a441;--cream:#f4ead7;--muted:#b7a993;--line:#3a2b1d}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#0d0b09,#1b130c);color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1050px;margin:auto;padding:28px 18px 60px}.hero{padding:34px 0 22px}.eyebrow{color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-size:12px;font-weight:700}
+h1{font-family:Georgia,serif;font-size:clamp(36px,7vw,68px);line-height:1;margin:10px 0}.sub{color:var(--muted);max-width:720px;font-size:17px;line-height:1.6}
+.panel{background:rgba(23,18,14,.92);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:20px;box-shadow:0 15px 40px rgba(0,0,0,.25)}
+label{display:block;font-size:13px;color:var(--muted);margin:0 0 8px;font-weight:700}input,select,textarea{width:100%;background:#0f0c09;color:var(--cream);border:1px solid #4a3725;border-radius:10px;padding:13px;font-size:15px;margin-bottom:16px}textarea{min-height:110px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+button{background:var(--gold);color:#17110b;border:0;border-radius:10px;padding:14px 18px;font-weight:800;font-size:15px;cursor:pointer}button.secondary{background:#2b2118;color:var(--cream);border:1px solid #4a3725;margin-left:8px}
+#output{display:none}.scene{border-top:1px solid var(--line);padding:16px 0}.scene:first-child{border-top:0}.scene h3{margin:0 0 7px;color:var(--gold)}.scene p{line-height:1.6;color:#e9deca}.tag{display:inline-block;padding:5px 8px;border-radius:999px;background:#2a2017;color:var(--muted);font-size:12px;margin-right:6px}
+.small{font-size:12px;color:var(--muted);line-height:1.5}.copybox{background:#0f0c09;border:1px solid var(--line);border-radius:10px;padding:12px;white-space:pre-wrap;line-height:1.55;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">The World Before Us</div>
+    <h1>AI Ancient Civilization Video Maker</h1>
+    <p class="sub">Plan long-form cinematic history documentaries scene by scene. This first version generates a production blueprint: narration structure, visual prompts, audio direction and YouTube packaging.</p>
+  </section>
+
+  <section class="panel">
+    <div class="grid">
+      <div>
+        <label>DOCUMENTARY TITLE</label>
+        <input id="title" value="The Forgotten African Kingdom That Conquered Egypt">
+      </div>
+      <div>
+        <label>VIDEO LENGTH</label>
+        <select id="length">
+          <option>20 minutes</option><option>15 minutes</option><option>10 minutes</option>
+        </select>
+      </div>
+    </div>
+    <label>STYLE</label>
+    <select id="style"><option>Cinematic historical documentary</option><option>Mysterious ancient-world documentary</option><option>Educational documentary</option></select>
+    <label>FOCUS / NOTES</label>
+    <textarea id="notes">Ancient Kush, Nubia, Piye, the Kushite conquest of Egypt, the 25th Dynasty, Taharqa, Meroë, Kushite queens, Amanirenas and the legacy of Kush. Keep claims historically responsible and distinguish evidence from interpretation.</textarea>
+    <button onclick="generate()">Generate documentary blueprint</button>
+    <button class="secondary" onclick="copyAll()">Copy output</button>
+    <p class="small">Version 1 does not call paid AI APIs. It creates the production plan you can take into your preferred image, voice and video tools.</p>
+  </section>
+
+  <section id="output" class="panel"></section>
+</div>
+
+<script>
+const scenes = [
+["01","The Hook","0:00–1:00","Open with the Nile at sunrise, Meroë pyramids, a Kushite ruler and a powerful question: how did a southern African kingdom become pharaohs of Egypt?","Wide aerial Nile at sunrise; ancient Nubian pyramids; regal Kushite king overlooking an army; cinematic dust and golden light; historically inspired, no fantasy armor.","Mysterious cinematic drums; narration first; short title reveal."],
+["02","Where Was Kush?","1:00–2:00","Locate Nubia and Kush along the Nile south of Egypt. Explain why the river corridor mattered for agriculture, travel and trade.","Animated map of Egypt and Nubia; Nile valley; desert and fertile riverbanks; ancient settlements and boats.","Soft ambient strings and river sounds."],
+["03","Before the Empire","2:00–3:00","Introduce the deep history of Nubian states and the importance of Kerma before Kush became an imperial power.","Reconstruction of Kerma-era settlement, temples, pottery, markets and river traffic.","Low historical ambience."],
+["04","Wealth of the Nile","3:00–4:00","Explain gold, agriculture, livestock and long-distance trade without reducing Kush to a single resource.","Gold working; farmers beside Nile; caravans; merchants exchanging goods; artisans.","Market ambience and restrained percussion."],
+["05","Napata Rises","4:00–5:00","Explain the rise of Napata and the religious and political connections between Kush and Egypt.","Napatan temples near Gebel Barkal; royal procession; priests and craftsmen; Nile valley.","Majestic but restrained music."],
+["06","Piye","5:00–6:15","Introduce Piye and the political fragmentation of Egypt that created the opportunity for Kushite expansion.","Piye in royal court; Kushite army moving north; Egyptian cities divided among rival rulers.","Building drums and marching rhythm."],
+["07","The Conquest of Egypt","6:15–7:30","Tell the campaign carefully: Piye's advance, submissions and victory, then his establishment as ruler of Egypt.","Ancient army crossing river; sieges shown without graphic violence; royal ceremony; temple relief-inspired imagery.","Tense battle music resolving into ceremonial music."],
+["08","The Twenty-Fifth Dynasty","7:30–8:30","Explain what it meant for Kushite rulers to become pharaohs and how they used Egyptian royal traditions.","Kushite pharaoh in temple; crowns and royal regalia; monuments; inscriptions and ritual scenes.","Royal ceremonial music."],
+["09","Shabaka and Taharqa","8:30–9:45","Introduce later Kushite rulers and their building programs, religious policies and political challenges.","Temple construction; royal audience; Taharqa-inspired portrait; monumental architecture.","Grand but historically grounded score."],
+["10","The Assyrian Threat","9:45–11:00","Explain the conflict between the Kushite-Egyptian kingdom and Assyria, and why Kush eventually lost control of Egypt.","Assyrian and Egyptian forces; ancient city defenses; maps showing campaigns; retreat south.","Faster percussion, then silence at the transition."],
+["11","Kush Survives","11:00–12:00","Emphasize that losing Egypt did not mean the end of Kush. Power shifted south toward the Napatan and later Meroitic centers.","Nile journey south; royal court; temples; rebuilding and trade.","Hopeful transition."],
+["12","Meroë","12:00–13:15","Explore Meroë as a major Kushite center, including its pyramids, urban life and craft production.","Meroë pyramids; city streets; workshops; ironworking shown cautiously; desert trade routes.","Warm rhythmic music and workshop sounds."],
+["13","Kushite Culture","13:15–14:15","Discuss language, art, religion, architecture and the interaction of Egyptian and local traditions.","Kushite carvings; temples; jewelry; pottery; ceremonial scenes; close-ups of inscriptions.","Reflective documentary score."],
+["14","Queens and Kandakes","14:15–15:15","Introduce the political importance of royal women and the title Kandake, avoiding myths that exaggerate every queen's role.","Royal woman in court; palace ceremony; queens' monuments; army preparations.","Strong, dignified orchestral texture."],
+["15","Amanirenas and Rome","15:15–16:30","Tell the story of Kush's conflict with Rome and Amanirenas, separating well-attested events from later retellings.","Roman frontier map; Kushite soldiers; royal court; diplomatic confrontation; temple relief-inspired visuals.","Tense frontier music."],
+["16","Trade and the Wider World","16:30–17:15","Show Kush as part of wider African and Red Sea trade networks rather than an isolated kingdom.","Caravans, river boats, beads, textiles, metals and regional merchants.","Travel ambience."],
+["17","Why Kush Declined","17:15–18:00","Present multiple factors: changing trade routes, regional competition and political-economic pressures. Avoid claiming a single cause unless evidence supports it.","Empty Meroë streets; changing trade map; desert wind; fading caravan routes.","Somber, minimal score."],
+["18","The Pyramids Remain","18:00–18:45","Return to Meroë and explain what archaeological remains tell us about Kush.","Close-ups of pyramids, temple reliefs, inscriptions and landscape at sunset.","Quiet emotional music."],
+["19","Why Kush Matters","18:45–19:30","Connect Kush's history to the broader story of African civilizations and the ancient Nile world.","Montage of Kushite architecture, Nile landscapes and modern archaeological work.","Uplifting documentary music."],
+["20","Ending","19:30–20:00","End with the idea that the ancient world was more diverse and connected than modern popular culture often suggests. Invite viewers to subscribe.","Sunset over Meroë; slow pullback; final title: THE WORLD BEFORE US.","Music resolves; subtle final drum hit."]
+];
+
+function generate(){
+ const title=document.getElementById("title").value;
+ const style=document.getElementById("style").value;
+ const notes=document.getElementById("notes").value;
+ let html=`<h2>${escapeHtml(title)}</h2><p><span class="tag">20 minutes</span><span class="tag">${escapeHtml(style)}</span></p>`;
+ html+=`<h3>Production brief</h3><p class="copybox">Build this as a faceless historical documentary. Use consistent character design, architecture and color language across scenes. Verify historical claims before publishing. Notes: ${escapeHtml(notes)}</p>`;
+ scenes.forEach(s=>{
+   html+=`<div class="scene"><h3>Scene ${s[0]} — ${s[1]}</h3><div class="tag">${s[2]}</div><p><b>Narration goal:</b> ${s[3]}</p><p><b>Visual prompt:</b> ${s[4]}</p><p><b>Audio:</b> ${s[5]}</p></div>`;
+ });
+ html+=`<h3>YouTube package</h3><p><b>Suggested title:</b> The Forgotten African Kingdom That Conquered Egypt | The Story of Kush</p><p><b>Thumbnail:</b> A Kushite ruler in the foreground, Meroë pyramids and the Nile behind him, dramatic sunrise, bold readable text: “THE KINGDOM THAT CONQUERED EGYPT”</p><p><b>Description opening:</b> Long before modern borders, the Nile connected powerful African kingdoms. Among them was Kush — a civilization that rose in Nubia, conquered Egypt and later flourished at Meroë.</p><p><b>Keywords:</b> Ancient Kush, Kingdom of Kush, Nubia, Piye, Taharqa, Meroë, 25th Dynasty, ancient Africa, African history, ancient Egypt</p>`;
+ const out=document.getElementById("output"); out.innerHTML=html; out.style.display="block"; out.scrollIntoView({behavior:"smooth"});
+}
+function escapeHtml(x){return x.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));}
+function copyAll(){const out=document.getElementById("output"); if(out.style.display==="none"){generate();} navigator.clipboard.writeText(out.innerText).then(()=>alert("Documentary blueprint copied."));}
+</script>
+</body>
+</html>
