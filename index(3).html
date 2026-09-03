@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Before Us AI - Documentary Studio V5</title>
+<style>
+:root{--gold:#d4af37;--dark:#0b0b0b;--panel:#171717;--line:#3b3b3b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--dark);color:#f5f1e8}
+header{padding:34px 18px;text-align:center;background:linear-gradient(135deg,#111,#201a0b);border-bottom:2px solid var(--gold)}
+h1{margin:0;color:var(--gold);font-size:clamp(28px,7vw,54px)}
+header p{color:#cfc7b8;margin:10px 0 0}
+main{max-width:1050px;margin:auto;padding:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}
+h2,h3{color:var(--gold)}
+label{display:block;margin:12px 0 6px;font-weight:bold}
+input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #555;background:#0d0d0d;color:white;font-size:16px}
+textarea{min-height:105px;resize:vertical}
+button{margin:10px 8px 0 0;padding:13px 18px;border:0;border-radius:8px;background:var(--gold);color:#111;font-weight:bold;font-size:15px;cursor:pointer}
+button.secondary{background:#343434;color:#fff}
+button:hover{filter:brightness(1.12)}
+.output{white-space:pre-wrap;line-height:1.65;background:#0e0e0e;border-radius:10px;padding:16px;border-left:4px solid var(--gold);min-height:80px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.step{padding:15px;background:#101010;border:1px solid #333;border-radius:10px}
+.step strong{color:var(--gold)}
+.checklist label{font-weight:normal;padding:10px;display:block;border-bottom:1px solid #292929}
+.checklist input{width:auto;margin-right:10px}
+.small{color:#aaa;font-size:14px}
+footer{text-align:center;padding:25px;color:#888}
+</style>
+</head>
+<body>
+<header>
+<h1>THE WORLD BEFORE US AI</h1>
+<p>Ancient Civilization Documentary Studio • Advanced Production Workflow</p>
+</header>
+
+<main>
+<div class="card">
+<h2>🎬 1. Start a Documentary Project</h2>
+<label>Ancient Civilization or Topic</label>
+<input id="topic" placeholder="Example: The Kingdom of Kush">
+<label>Target Video Length</label>
+<select id="length">
+<option>15 minutes</option>
+<option selected>20 minutes</option>
+<option>30 minutes</option>
+</select>
+<label>Special Focus (optional)</label>
+<textarea id="focus" placeholder="Example: Focus on the Kushite rulers who conquered Egypt."></textarea>
+<button onclick="createProject()">Create Documentary Project</button>
+</div>
+
+<div class="card">
+<h2>📜 2. Documentary Title & Structure</h2>
+<div id="projectOutput" class="output">Create a project above to begin.</div>
+</div>
+
+<div class="card">
+<h2>✍️ 3. Script Production</h2>
+<p class="small">This section creates a structured script blueprint. You can expand each section into a full narration.</p>
+<button onclick="makeScript()">Generate Script Sections</button>
+<div id="scriptOutput" class="output">No script sections generated yet.</div>
+</div>
+
+<div class="card">
+<h2>🎥 4. Scene & Visual Production</h2>
+<button onclick="makeScenes()">Generate Scene Plan & Visual Prompts</button>
+<div id="sceneOutput" class="output">No scene plan generated yet.</div>
+</div>
+
+<div class="card">
+<h2>🎙️ 5. Voiceover & Audio Plan</h2>
+<button onclick="makeVoice()">Generate Voiceover Plan</button>
+<div id="voiceOutput" class="output">No voiceover plan generated yet.</div>
+</div>
+
+<div class="card">
+<h2>🎵 6. Music & Final Editing</h2>
+<button onclick="makeMusic()">Generate Music & Editing Plan</button>
+<div id="musicOutput" class="output">No music plan generated yet.</div>
+</div>
+
+<div class="card checklist">
+<h2>✅ 7. Documentary Production Checklist</h2>
+<label><input type="checkbox"> Research and fact-checking completed</label>
+<label><input type="checkbox"> Documentary script completed</label>
+<label><input type="checkbox"> Voiceover generated or recorded</label>
+<label><input type="checkbox"> Historical visuals created</label>
+<label><input type="checkbox"> Background music selected</label>
+<label><input type="checkbox"> Scenes edited together</label>
+<label><input type="checkbox"> Subtitles added</label>
+<label><input type="checkbox"> Final documentary exported</label>
+</div>
+
+<div class="card">
+<h2>🚀 Production Workflow</h2>
+<div class="grid">
+<div class="step"><strong>1.</strong> Choose Topic</div>
+<div class="step"><strong>2.</strong> Build Structure</div>
+<div class="step"><strong>3.</strong> Write Script</div>
+<div class="step"><strong>4.</strong> Create Scenes</div>
+<div class="step"><strong>5.</strong> Produce Visuals</div>
+<div class="step"><strong>6.</strong> Generate Voiceover</div>
+<div class="step"><strong>7.</strong> Add Music & Edit</div>
+<div class="step"><strong>8.</strong> Export Final Video</div>
+</div>
+</div>
+</main>
+
+<footer>THE WORLD BEFORE US AI • Documentary Studio • Advanced Workflow</footer>
+
+<script>
+function getData(){
+ const topic=document.getElementById('topic').value.trim() || 'Your Ancient Civilization Topic';
+ const length=document.getElementById('length').value;
+ const focus=document.getElementById('focus').value.trim();
+ return {topic,length,focus};
+}
+function createProject(){
+ const d=getData();
+ document.getElementById('projectOutput').textContent=
+`DOCUMENTARY PROJECT: ${d.topic}
+
+WORKING TITLE:
+The Forgotten Story of ${d.topic}
+
+TARGET LENGTH: ${d.length}
+
+SPECIAL FOCUS:
+${d.focus || 'Create a balanced cinematic exploration of the civilization, its people, achievements, conflicts and legacy.'}
+
+CORE STORY:
+Take the viewer from the mysterious opening through the rise, achievements, challenges and lasting legacy of ${d.topic}.`;
+}
+function makeScript(){
+ const d=getData();
+ document.getElementById('scriptOutput').textContent=
+`SCRIPT BLUEPRINT — ${d.topic}
+
+INTRODUCTION
+Open with a powerful mystery or dramatic historical question.
+
+SECTION 1 — THE WORLD BEFORE THE RISE
+Explain geography, early people and historical conditions.
+
+SECTION 2 — THE RISE
+Describe how ${d.topic} emerged and gained influence.
+
+SECTION 3 — POWER AND ACHIEVEMENT
+Explore rulers, architecture, culture, technology and major accomplishments.
+
+SECTION 4 — CONFLICT AND CHANGE
+Cover wars, invasions, internal struggles or important turning points.
+
+SECTION 5 — DECLINE OR TRANSFORMATION
+Explain how the civilization changed or lost power, separating confirmed evidence from uncertainty.
+
+SECTION 6 — LEGACY
+Show what remains and why ${d.topic} still matters today.
+
+TARGET: Expand these sections into narration suitable for approximately ${d.length}.`;
+}
+function makeScenes(){
+ const d=getData();
+ let scenes='';
+ const names=['Mysterious cinematic opening','Ancient landscape and geography','Origins and early society','Rise to power','Great rulers and achievements','Culture and daily life','Conflict and turning point','Decline and legacy'];
+ names.forEach((name,i)=>{
+ scenes+=`SCENE ${i+1}: ${name}
+Visual prompt: Cinematic historical documentary image of ${d.topic}, archaeological authenticity, detailed ancient environment, dramatic natural lighting, realistic people and architecture, epic wide shot, no modern objects.
+
+`;
+ });
+ document.getElementById('sceneOutput').textContent=scenes;
+}
+function makeVoice(){
+ const d=getData();
+ document.getElementById('voiceOutput').textContent=
+`VOICEOVER PLAN — ${d.topic}
+
+Narration style: Calm, deep, cinematic and engaging.
+Pacing: Moderate, allowing time for visuals and important historical moments.
+Structure: Record narration section by section.
+Suggested workflow:
+1. Introduction and hook
+2. Origins
+3. Rise and achievements
+4. Culture and people
+5. Conflict and transformation
+6. Legacy and conclusion
+
+After the final script is written, each section can be converted into an audio voiceover using a suitable voice-generation or recording tool.`;
+}
+function makeMusic(){
+ const d=getData();
+ document.getElementById('musicOutput').textContent=
+`MUSIC & EDITING PLAN — ${d.topic}
+
+OPENING: Atmospheric and mysterious.
+RISE: Gradually more powerful and inspiring.
+CONFLICT: Tense cinematic sound.
+DISCOVERY AND CULTURE: Reflective, ancient and immersive.
+ENDING: Emotional and thoughtful.
+
+FINAL EDITING ORDER:
+1. Place voiceover on the timeline.
+2. Match historical visuals to each narration section.
+3. Add subtle background music.
+4. Add sound effects where appropriate.
+5. Add subtitles.
+6. Fact-check names, dates and historical claims.
+7. Export the completed documentary.`;
+}
+</script>
+</body>
+</html>
