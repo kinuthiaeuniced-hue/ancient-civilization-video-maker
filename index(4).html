@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Before Us AI - Documentary Studio</title>
+<style>
+:root{--gold:#d4af37;--dark:#090909;--panel:#171717;--line:#3a3a3a;--text:#f4f0e8}
+*{box-sizing:border-box}body{margin:0;background:var(--dark);color:var(--text);font-family:Arial,sans-serif}
+header{padding:34px 18px;text-align:center;background:linear-gradient(135deg,#111,#261d08);border-bottom:2px solid var(--gold)}
+h1{margin:0;color:var(--gold);font-size:clamp(28px,7vw,52px)}header p{margin:10px 0 0;color:#cfc7b8}
+main{max-width:1050px;margin:auto;padding:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:20px;margin-bottom:18px}
+h2{color:var(--gold);margin-top:0}label{display:block;font-weight:bold;margin:12px 0 7px;color:#ead49a}
+input,select,textarea{width:100%;padding:13px;border-radius:9px;border:1px solid #555;background:#0d0d0d;color:white;font-size:16px}
+textarea{min-height:100px;resize:vertical}button{padding:14px 18px;margin:12px 8px 0 0;border:0;border-radius:9px;background:var(--gold);color:#151515;font-size:16px;font-weight:bold;cursor:pointer}
+.output{white-space:pre-wrap;line-height:1.7;background:#0d0d0d;border-left:4px solid var(--gold);border-radius:10px;padding:17px;min-height:70px;overflow-wrap:anywhere}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.box{padding:15px;background:#101010;border:1px solid #333;border-radius:10px}
+footer{text-align:center;color:#888;padding:25px}.note{color:#bbb;font-size:14px}
+</style>
+</head>
+<body>
+<header><h1>THE WORLD BEFORE US AI</h1><p>Ancient Civilization Documentary Studio • Detailed Script & Scene Builder</p></header>
+<main>
+<div class="card">
+<h2>🎬 Start Your Documentary</h2>
+<label>Documentary Topic</label><input id="topic" placeholder="Example: The Kingdom of Kush">
+<label>Target Length</label><select id="length"><option>15 minutes</option><option selected>20 minutes</option><option>30 minutes</option></select>
+<label>Special Focus</label><textarea id="focus" placeholder="Example: Focus on Kushite rulers, the conquest of Egypt, Meroë and the kingdom's legacy."></textarea>
+<button onclick="buildProject()">Build Documentary</button>
+</div>
+<div class="card"><h2>📜 1. Documentary Blueprint</h2><div id="blueprint" class="output">Enter your topic and build your documentary.</div></div>
+<div class="card"><h2>✍️ 2. Detailed Script Builder</h2><p class="note">This creates a section-by-section narration framework that you can expand and refine for your final documentary.</p><button onclick="buildScript()">Generate Detailed Script Structure</button><div id="script" class="output">No script generated yet.</div></div>
+<div class="card"><h2>🎥 3. Scene-by-Scene Breakdown</h2><button onclick="buildScenes()">Generate Scenes</button><div id="scenes" class="output">No scenes generated yet.</div></div>
+<div class="card"><h2>🖼️ 4. Visual Production Prompts</h2><button onclick="buildVisuals()">Generate Visual Prompts</button><div id="visuals" class="output">No visual prompts generated yet.</div></div>
+<div class="card"><h2>🎙️ 5. Voiceover Timeline</h2><button onclick="buildVoiceover()">Generate Voiceover Plan</button><div id="voice" class="output">No voiceover timeline generated yet.</div></div>
+<div class="card"><h2>🎬 6. Final Production Workflow</h2><div class="grid"><div class="box">1. Research & fact-check</div><div class="box">2. Finalize narration</div><div class="box">3. Create visuals</div><div class="box">4. Generate or record voiceover</div><div class="box">5. Add music and sound effects</div><div class="box">6. Edit scenes together</div><div class="box">7. Add subtitles</div><div class="box">8. Export final documentary</div></div></div>
+</main><footer>THE WORLD BEFORE US AI • Ancient Civilization Documentary Studio</footer>
+<script>
+function data(){return {topic:document.getElementById('topic').value.trim()||'Your Ancient Civilization Topic',length:document.getElementById('length').value,focus:document.getElementById('focus').value.trim()};}
+function buildProject(){const d=data();document.getElementById('blueprint').textContent=`DOCUMENTARY TITLE
+The Forgotten Story of ${d.topic}
+
+TARGET LENGTH
+${d.length}
+
+CENTRAL QUESTION
+What can the story of ${d.topic} reveal about the ancient world?
+
+SPECIAL FOCUS
+${d.focus||'Explore the civilization, its people, achievements, conflicts, decline and lasting legacy.'}
+
+STORY ARC
+Mystery → Origins → Rise → Power → Culture → Conflict → Transformation → Legacy
+
+HISTORICAL APPROACH
+Use reliable historical evidence. Clearly distinguish between established facts, scholarly interpretation and uncertain theories.`;}
+function buildScript(){const d=data();const sections=[['OPENING HOOK',`Begin with a powerful question or cinematic moment. Introduce the mystery surrounding ${d.topic} and explain why its story deserves to be remembered.`],['THE LAND AND ITS PEOPLE',`Describe the geography, rivers, deserts, trade routes and environment that shaped the people connected with ${d.topic}.`],['THE ORIGINS','Explain the earliest known roots and historical background.'],['THE RISE',`Tell the story of how ${d.topic} developed influence, wealth, political power or military strength.`],['THE GOLDEN AGE','Explore major rulers, cities, monuments, achievements, trade, religion and cultural life.'],['POWER AND CONFLICT','Describe major encounters, wars, alliances, rival powers or turning points.'],['THE PEOPLE','Show daily life, families, workers, religious traditions, art and customs.'],['DECLINE OR TRANSFORMATION',`Explain how political, environmental, economic or military changes affected ${d.topic}. Avoid presenting uncertain explanations as fact.`],['THE LEGACY','Connect surviving monuments, archaeology, ideas and cultural influence to the modern understanding of history.'],['FINAL CONCLUSION','Return to the opening mystery and end with a thoughtful reflection on what the world almost forgot.']];let out=`DETAILED DOCUMENTARY SCRIPT FRAMEWORK — ${d.topic}
+Target length: ${d.length}
+
+`;sections.forEach((s,i)=>out+=`SECTION ${i+1}: ${s[0]}
+Narration direction: ${s[1]}
+
+`);document.getElementById('script').textContent=out;}
+function buildScenes(){const d=data();const names=['The opening mystery','Ancient landscape','Origins of the civilization','Rise to power','Great rulers and achievements','Culture and daily life','Conflict and change','Transformation or decline','Archaeological evidence','The lasting legacy'];let out=`SCENE-BY-SCENE PLAN — ${d.topic}
+
+`;names.forEach((n,i)=>out+=`SCENE ${i+1}: ${n}
+Purpose: Move the documentary story forward while visually immersing the viewer in the world of ${d.topic}.
+Suggested duration: approximately 1–3 minutes depending on the final narration.
+
+`);document.getElementById('scenes').textContent=out;}
+function buildVisuals(){const d=data();const prompts=['Epic aerial establishing view of the ancient landscape','Ancient city reconstructed with historically appropriate architecture','Close cinematic details of artifacts, inscriptions and craftsmanship','A historically grounded depiction of rulers and important figures','Busy daily life in an ancient settlement','Trade routes and the movement of goods across the ancient world','Dramatic but non-graphic depiction of conflict or political change','Ruins and archaeological remains in the present day'];let out=`VISUAL PROMPT PACK — ${d.topic}
+
+`;prompts.forEach((p,i)=>out+=`${i+1}. ${p}
+Prompt: ${p} connected to ${d.topic}, cinematic historical documentary style, realistic materials and lighting, archaeological authenticity, highly detailed, no modern objects, widescreen composition.
+
+`);document.getElementById('visuals').textContent=out;}
+function buildVoiceover(){const d=data();document.getElementById('voice').textContent=`VOICEOVER TIMELINE — ${d.topic}
+
+0:00–1:30 — Opening hook
+1:30–3:30 — Land and origins
+3:30–6:00 — Rise to power
+6:00–9:00 — Golden age and achievements
+9:00–12:00 — Culture and daily life
+12:00–15:00 — Conflict and transformation
+15:00 onward — Legacy and conclusion
+
+Adjust the timing to fit the final ${d.length} narration.
+
+VOICE STYLE
+Clear, warm, cinematic and deliberate. Leave short pauses between important historical ideas so the visuals can breathe.`;}
+</script></body></html>
