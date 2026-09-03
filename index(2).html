@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Before Us AI - V4</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#0b0b0b;color:#f5f1e8}
+header{padding:35px 20px;text-align:center;background:#151515;border-bottom:2px solid #b08d57}
+h1{margin:0;color:#d4af37;font-size:clamp(28px,6vw,52px)}
+.subtitle{color:#ccc;margin-top:10px}
+main{max-width:1000px;margin:auto;padding:25px 18px}
+.card{background:#171717;border:1px solid #333;border-radius:14px;padding:22px;margin:18px 0}
+label{display:block;margin:12px 0 6px;font-weight:bold;color:#d4af37}
+input,textarea,select{width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #555;background:#0e0e0e;color:white;font-size:16px}
+textarea{min-height:120px;resize:vertical}
+button{margin-top:16px;padding:14px 20px;border:0;border-radius:8px;background:#d4af37;color:#111;font-weight:bold;font-size:16px;cursor:pointer}
+button:hover{background:#f0c95a}
+.output{white-space:pre-wrap;line-height:1.6;background:#101010;padding:18px;border-radius:10px;border-left:4px solid #d4af37;margin-top:15px}
+footer{text-align:center;padding:30px;color:#888}
+</style>
+</head>
+<body>
+<header>
+<h1>THE WORLD BEFORE US AI</h1>
+<div class="subtitle">Ancient Civilization Documentary Studio • Version 4</div>
+</header>
+
+<main>
+<div class="card">
+<h2>🎬 Create Your Documentary Project</h2>
+<label>Documentary Topic</label>
+<input id="topic" placeholder="Example: The Forgotten Kingdom of Kush">
+
+<label>Desired Length</label>
+<select id="length">
+<option>15 minutes</option>
+<option selected>20 minutes</option>
+<option>30 minutes</option>
+</select>
+
+<label>Additional Instructions (optional)</label>
+<textarea id="notes" placeholder="Example: Focus on the Kushites who conquered Egypt."></textarea>
+
+<button onclick="generate()">Generate Documentary Production Plan</button>
+</div>
+
+<div class="card">
+<h2>📜 Your AI Documentary Studio Output</h2>
+<div id="output" class="output">Enter a topic and click “Generate Documentary Production Plan.”</div>
+</div>
+</main>
+
+<footer>THE WORLD BEFORE US AI • V4 • Ancient Civilization Documentary Studio</footer>
+
+<script>
+function generate(){
+  const topic=document.getElementById('topic').value.trim() || 'Your Ancient Civilization Topic';
+  const length=document.getElementById('length').value;
+  const notes=document.getElementById('notes').value.trim();
+
+  const scenes = [
+    "Scene 1: Cinematic opening establishing the ancient world and the central mystery.",
+    "Scene 2: Introduce the geography, people and historical setting.",
+    "Scene 3: Explore the rise of the civilization or empire.",
+    "Scene 4: Reveal its greatest rulers, achievements and conflicts.",
+    "Scene 5: Examine daily life, religion, architecture and culture.",
+    "Scene 6: Investigate major turning points and historical evidence.",
+    "Scene 7: Explore the decline, transformation or disappearance.",
+    "Scene 8: End with the civilization's lasting legacy."
+  ];
+
+  const result =
+`DOCUMENTARY TITLE
+${topic}: The Story History Almost Forgot
+
+TARGET LENGTH
+${length}
+
+PRODUCTION NOTES
+${notes || 'Create a cinematic, educational and historically responsible documentary.'}
+
+DOCUMENTARY STRUCTURE
+1. Powerful cinematic hook
+2. Introduction to ${topic}
+3. Historical background
+4. Rise and expansion
+5. Culture and daily life
+6. Great rulers and major events
+7. Conflict, decline or transformation
+8. Legacy and final conclusion
+
+NARRATION GUIDANCE
+Write in a dramatic documentary style. Use clear storytelling, historical context and smooth transitions. Distinguish confirmed history from uncertain theories.
+
+SCENE-BY-SCENE VISUAL PLAN
+${scenes.map((s,i)=>`${i+1}. ${s}\nVisual prompt: Cinematic historical documentary scene about ${topic}, realistic ancient environment, dramatic lighting, detailed architecture, archaeological authenticity, no modern objects.`).join('\n\n')}
+
+VOICEOVER
+Generate the final narration one section at a time, then record or generate a voiceover using the completed script.
+
+MUSIC
+Use cinematic atmospheric music. Begin with mystery, build during major events and finish with a reflective tone.
+
+FINAL PRODUCTION CHECKLIST
+✓ Complete script
+✓ Scene prompts
+✓ Visuals or video clips
+✓ Voiceover
+✓ Background music
+✓ Subtitles
+✓ Final editing and export
+
+V4 NOTE
+This website creates the documentary production blueprint. The actual AI images, video clips and voice generation still need to be produced using suitable creation tools.`;
+
+  document.getElementById('output').textContent=result;
+}
+</script>
+</body>
+</html>
